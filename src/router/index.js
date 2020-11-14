@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -8,16 +7,29 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: function () {
+      return import('../views/Home.vue')
+    }
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: '/auth/callback',
+    name: 'Callback',
     component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/About.vue')
+      return import('../views/Callback.vue')
+    }
+  },
+  {
+    path: '/auth/silent-renew',
+    name: 'SilentRenew',
+    component: function () {
+      return import('../views/SilentRenew.vue')
+    }
+  },
+  {
+    path: '/auth/logout',
+    name: 'Logout',
+    component: function () {
+      return import('../views/Logout.vue')
     }
   }
 ]
